@@ -1,0 +1,20 @@
+
+target Java
+
+entity Student {
+    name : String
+    age : Integer
+}
+
+constraint {
+    age >= 18
+}
+
+generate {
+    CRUD
+}
+
+verify {
+    compile
+    unit_test
+}
