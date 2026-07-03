@@ -1,0 +1,35 @@
+target Java17;
+
+package college.student;
+
+imports {
+    java.util.*;
+}
+
+entity Student {
+    id: int;
+    name: String;
+    email: String;
+}
+
+constraints {
+    documented;
+    serializable;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    setters;
+    equals;
+    hashcode;
+    tostring;
+    documentation;
+}
+
+verify {
+    compile;
+    lint;
+}

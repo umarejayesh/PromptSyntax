@@ -1,0 +1,30 @@
+\subsection{Language Extension: Constraints and Namespace Declarations}
+\label{subsec:v11-extension}
+
+PromptSyntax Version~1.1 extends the core language with namespace declarations, import blocks, and constraint blocks. These constructs increase the expressiveness of the source language while preserving the existing compiler pipeline.
+
+A package declaration assigns the generated artifact to a target-language namespace:
+
+\begin{lstlisting}
+package college.student;
+\end{lstlisting}
+
+An import block specifies dependencies required by the generated artifact:
+
+\begin{lstlisting}
+imports {
+    java.util.*;
+}
+\end{lstlisting}
+
+A constraint block expresses implementation-level requirements that guide generation without changing the logical entity model:
+
+\begin{lstlisting}
+constraints {
+    documented;
+    serializable;
+    clean_code;
+}
+\end{lstlisting}
+
+During compilation, namespace declarations, imports, and constraints are translated into PromptIR fields and preserved through optimization and backend lowering. Constraint directives are also checked by the static semantic analyzer. For example, the constraint \texttt{immutable} is rejected when combined with the generation directive \texttt{setters}, because the two declarations express conflicting implementation requirements.

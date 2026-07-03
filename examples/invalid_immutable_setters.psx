@@ -1,0 +1,15 @@
+target Java17;
+
+entity Student {
+    id: int;
+}
+
+constraints {
+    immutable;
+}
+
+generate {
+    class;
+    constructor;
+    setters;
+}
