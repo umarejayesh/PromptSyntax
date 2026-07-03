@@ -4,7 +4,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.promptsyntax.ast.ProgramNode;
 import org.promptsyntax.backend.Backend;
-import org.promptsyntax.backend.GptBackend;
+import org.promptsyntax.backend.BackendFactory;
 import org.promptsyntax.frontend.AstBuilder;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.PromptIRGenerator;
@@ -17,12 +17,14 @@ import java.nio.file.Path;
 public final class Main {
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            System.err.println("Usage: promptsyntax <file.psx>");
+        if (args.length < 1 || args.length > 2) {
+            System.err.println("Usage: promptsyntax <file.psx> [backend]");
+            System.err.println("Backends: gpt, claude, gemini, qwen, deepseek");
             System.exit(1);
         }
 
         String source = Files.readString(Path.of(args[0]));
+        String backendName = args.length == 2 ? args[1] : "gpt";
 
         CharStream input = CharStreams.fromString(source);
         PromptSyntaxLexer lexer = new PromptSyntaxLexer(input);
@@ -44,19 +46,14 @@ public final class Main {
             System.exit(1);
         }
 
-        AstBuilder astBuilder = new AstBuilder();
-        ProgramNode ast = (ProgramNode) astBuilder.visit(tree);
+        ProgramNode ast = (ProgramNode) new AstBuilder().visit(tree);
 
-        SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
-        semanticAnalyzer.analyze(ast);
+        new SemanticAnalyzer().analyze(ast);
 
-        PromptIRGenerator irGenerator = new PromptIRGenerator();
-        PromptIR ir = irGenerator.generate(ast);
+        PromptIR ir = new PromptIRGenerator().generate(ast);
+        PromptIR optimizedIR = new PromptIROptimizer().optimize(ir);
 
-        PromptIROptimizer optimizer = new PromptIROptimizer();
-        PromptIR optimizedIR = optimizer.optimize(ir);
-
-        Backend backend = new GptBackend();
+        Backend backend = BackendFactory.create(backendName);
         String prompt = backend.lower(optimizedIR);
 
         System.out.println("=== PromptSyntax Compilation Successful ===");
