@@ -1,0 +1,24 @@
+target Java17;
+
+entity BankAccount {
+    accountNumber : String;
+    balance : double;
+    active : boolean;
+}
+
+constraints {
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    setters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

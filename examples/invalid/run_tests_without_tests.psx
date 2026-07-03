@@ -1,0 +1,13 @@
+target Java17;
+
+entity Student {
+    name : String;
+}
+
+generate {
+    class;
+}
+
+verify {
+    run_tests;
+}

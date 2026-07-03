@@ -1,0 +1,23 @@
+target Java17;
+
+entity Student {
+    name : String;
+    age : int;
+}
+
+constraints {
+    documented;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

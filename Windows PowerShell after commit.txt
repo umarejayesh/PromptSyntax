@@ -1,0 +1,644 @@
+PS C:\Users\umrej\Downloads\promptsyntax> mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'packageName' is unknown for plugin 'antlr4-maven-plugin:4.13.1:antlr4 (default)'
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ promptsyntax-compiler ---
+[INFO] Deleting C:\Users\umrej\Downloads\promptsyntax\target
+[INFO]
+[INFO] --- antlr4:4.13.1:antlr4 (default) @ promptsyntax-compiler ---
+[INFO] ANTLR 4: Processing source directory C:\Users\umrej\Downloads\promptsyntax\src\main\antlr4
+[INFO] Processing grammar: org\promptsyntax\PromptSyntax.g4
+[INFO]
+[INFO] --- build-helper:3.6.0:add-source (add-source) @ promptsyntax-compiler ---
+[INFO] Source directory: C:\Users\umrej\Downloads\promptsyntax\target\generated-sources\antlr4 added.
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ promptsyntax-compiler ---
+[INFO] skip non existing resourceDirectory C:\Users\umrej\Downloads\promptsyntax\src\main\resources
+[INFO]
+[INFO] --- compiler:3.15.0:compile (default-compile) @ promptsyntax-compiler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 24 source files with javac [debug target 17] to target\classes
+[INFO] -------------------------------------------------------------
+[WARNING] COMPILATION WARNING :
+[INFO] -------------------------------------------------------------
+[WARNING] system modules path not set in conjunction with -source 17
+[INFO] 1 warning
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[30,76] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[32,40] cannot find symbol
+  symbol:   method fields()
+  location: variable entity of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[33,45] cannot find symbol
+  symbol:   method type()
+  location: variable field of type org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[33,78] cannot find symbol
+  symbol:   method name()
+  location: variable field of type org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/frontend/AstBuilder.java:[65,16] constructor EntityNode in class org.promptsyntax.ast.EntityNode cannot be applied to given types;
+  required: java.lang.String
+  found:    java.lang.String,java.util.List<org.promptsyntax.ast.FieldNode>
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[30,50] cannot find symbol
+  symbol:   method fields()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[30,35] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[34,33] cannot find symbol
+  symbol:   method name()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[34,47] cannot find symbol
+  symbol:   method typeName()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[12,44] invalid method reference
+  cannot find symbol
+    symbol:   method name()
+    location: class org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[17,26] cannot find symbol
+  symbol:   method fields()
+  location: variable e of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[17,73] invalid method reference
+  cannot find symbol
+    symbol:   method name()
+    location: class org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[16,26] cannot find symbol
+  symbol:   method name()
+  location: variable e of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[19,24] incompatible types: java.util.List<java.lang.Object> cannot be converted to java.util.List<org.promptsyntax.ir.IREntity>
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[41,40] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[42,86] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[44,37] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[48,23] cannot find symbol
+  symbol:   method fields()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[49,96] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[53,42] cannot find symbol
+  symbol:   method fields()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[54,42] cannot find symbol
+  symbol:   method name()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[55,98] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[55,120] cannot find symbol
+  symbol:   method name()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[58,52] cannot find symbol
+  symbol:   method typeName()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[58,97] cannot find symbol
+  symbol:   method typeName()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,83] cannot find symbol
+  symbol:   method name()
+  location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,104] cannot find symbol
+  symbol:   method name()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,126] cannot find symbol
+  symbol:   method typeName()
+  location: variable field of type org.promptsyntax.ast.FieldNode
+[INFO] 28 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.693 s
+[INFO] Finished at: 2026-07-03T22:09:45+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.15.0:compile (default-compile) on project promptsyntax-compiler: Compilation failure: Compilation failure:
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[30,76] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[32,40] cannot find symbol
+[ERROR]   symbol:   method fields()
+[ERROR]   location: variable entity of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[33,45] cannot find symbol
+[ERROR]   symbol:   method type()
+[ERROR]   location: variable field of type org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/backend/GptBackend.java:[33,78] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable field of type org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/frontend/AstBuilder.java:[65,16] constructor EntityNode in class org.promptsyntax.ast.EntityNode cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found:    java.lang.String,java.util.List<org.promptsyntax.ast.FieldNode>
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[30,50] cannot find symbol
+[ERROR]   symbol:   method fields()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[30,35] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[34,33] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIRGenerator.java:[34,47] cannot find symbol
+[ERROR]   symbol:   method typeName()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[12,44] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method name()
+[ERROR]     location: class org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[17,26] cannot find symbol
+[ERROR]   symbol:   method fields()
+[ERROR]   location: variable e of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[17,73] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method name()
+[ERROR]     location: class org.promptsyntax.ir.IRField
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[16,26] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable e of type org.promptsyntax.ir.IREntity
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/ir/PromptIROptimizer.java:[19,24] incompatible types: java.util.List<java.lang.Object> cannot be converted to java.util.List<org.promptsyntax.ir.IREntity>
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[41,40] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[42,86] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[44,37] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[48,23] cannot find symbol
+[ERROR]   symbol:   method fields()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[49,96] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[53,42] cannot find symbol
+[ERROR]   symbol:   method fields()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[54,42] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[55,98] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[55,120] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[58,52] cannot find symbol
+[ERROR]   symbol:   method typeName()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[58,97] cannot find symbol
+[ERROR]   symbol:   method typeName()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,83] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable entity of type org.promptsyntax.ast.EntityNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,104] cannot find symbol
+[ERROR]   symbol:   method name()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] /C:/Users/umrej/Downloads/promptsyntax/src/main/java/org/promptsyntax/semantics/SemanticAnalyzer.java:[59,126] cannot find symbol
+[ERROR]   symbol:   method typeName()
+[ERROR]   location: variable field of type org.promptsyntax.ast.FieldNode
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+PS C:\Users\umrej\Downloads\promptsyntax> tree /F src > structure.txt
+PS C:\Users\umrej\Downloads\promptsyntax> mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'packageName' is unknown for plugin 'antlr4-maven-plugin:4.13.1:antlr4 (default)'
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ promptsyntax-compiler ---
+[INFO] Deleting C:\Users\umrej\Downloads\promptsyntax\target
+[INFO]
+[INFO] --- antlr4:4.13.1:antlr4 (default) @ promptsyntax-compiler ---
+[INFO] ANTLR 4: Processing source directory C:\Users\umrej\Downloads\promptsyntax\src\main\antlr4
+[INFO] Processing grammar: org\promptsyntax\PromptSyntax.g4
+[INFO]
+[INFO] --- build-helper:3.6.0:add-source (add-source) @ promptsyntax-compiler ---
+[INFO] Source directory: C:\Users\umrej\Downloads\promptsyntax\target\generated-sources\antlr4 added.
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ promptsyntax-compiler ---
+[INFO] skip non existing resourceDirectory C:\Users\umrej\Downloads\promptsyntax\src\main\resources
+[INFO]
+[INFO] --- compiler:3.15.0:compile (default-compile) @ promptsyntax-compiler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 24 source files with javac [debug target 17] to target\classes
+[WARNING] system modules path not set in conjunction with -source 17
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ promptsyntax-compiler ---
+[INFO] skip non existing resourceDirectory C:\Users\umrej\Downloads\promptsyntax\src\test\resources
+[INFO]
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ promptsyntax-compiler ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ promptsyntax-compiler ---
+[INFO] No tests to run.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.153 s
+[INFO] Finished at: 2026-07-03T22:20:07+05:30
+[INFO] ------------------------------------------------------------------------
+PS C:\Users\umrej\Downloads\promptsyntax> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        examples/student.psx
+        src/main/java/org/promptsyntax.zip
+        src/main/java/org/promptsyntax/Main.java
+        src/main/java/org/promptsyntax/ast/EntityNode.java
+        src/main/java/org/promptsyntax/ast/FieldNode.java
+        src/main/java/org/promptsyntax/backend/Backend.java
+        src/main/java/org/promptsyntax/ir/IREntity.java
+        src/main/java/org/promptsyntax/ir/IRField.java
+        src/main/java/org/promptsyntax/lexer/
+        src/main/java/org/promptsyntax/semantics/SemanticException.java
+        structure.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\Users\umrej\Downloads\promptsyntax> git add .
+PS C:\Users\umrej\Downloads\promptsyntax> git commit -m "Fix AST and IR record APIs"
+[main 012f901] Fix AST and IR record APIs
+ 14 files changed, 453 insertions(+)
+ create mode 100644 examples/student.psx
+ create mode 100644 src/main/java/org/promptsyntax.zip
+ create mode 100644 src/main/java/org/promptsyntax/Main.java
+ create mode 100644 src/main/java/org/promptsyntax/ast/EntityNode.java
+ create mode 100644 src/main/java/org/promptsyntax/ast/FieldNode.java
+ create mode 100644 src/main/java/org/promptsyntax/backend/Backend.java
+ create mode 100644 src/main/java/org/promptsyntax/ir/IREntity.java
+ create mode 100644 src/main/java/org/promptsyntax/ir/IRField.java
+ create mode 100644 src/main/java/org/promptsyntax/lexer/Lexer.java
+ create mode 100644 src/main/java/org/promptsyntax/lexer/LexerException.java
+ create mode 100644 src/main/java/org/promptsyntax/lexer/Token.java
+ create mode 100644 src/main/java/org/promptsyntax/lexer/TokenType.java
+ create mode 100644 src/main/java/org/promptsyntax/semantics/SemanticException.java
+ create mode 100644 structure.txt
+PS C:\Users\umrej\Downloads\promptsyntax> git push
+Enumerating objects: 38, done.
+Counting objects: 100% (38/38), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (25/25), done.
+Writing objects: 100% (27/27), 13.83 KiB | 2.77 MiB/s, done.
+Total 27 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: This repository moved. Please use the new location:
+remote:   https://github.com/umarejayesh/PromptSyntax.git
+To https://github.com/umarejayesh/promptsyntax.git
+   784f4f6..012f901  main -> main
+PS C:\Users\umrej\Downloads\promptsyntax> java -cp target/classes org.promptsyntax.Main examples/student.psx
+TARGET(target) at 2:1
+IDENTIFIER(Java) at 2:8
+ENTITY(entity) at 4:1
+IDENTIFIER(Student) at 4:8
+LBRACE({) at 4:16
+IDENTIFIER(name) at 5:5
+COLON(:) at 5:10
+TYPE_NAME(String) at 5:12
+IDENTIFIER(age) at 6:5
+COLON(:) at 6:9
+TYPE_NAME(Integer) at 6:11
+RBRACE(}) at 7:1
+CONSTRAINT(constraint) at 9:1
+LBRACE({) at 9:12
+IDENTIFIER(age) at 10:5
+GTE(>=) at 10:9
+INTEGER_LITERAL(18) at 10:12
+RBRACE(}) at 11:1
+GENERATE(generate) at 13:1
+LBRACE({) at 13:10
+IDENTIFIER(CRUD) at 14:5
+RBRACE(}) at 15:1
+VERIFY(verify) at 17:1
+LBRACE({) at 17:8
+IDENTIFIER(compile) at 18:5
+IDENTIFIER(unit_test) at 19:5
+RBRACE(}) at 20:1
+EOF at 20:2
+PS C:\Users\umrej\Downloads\promptsyntax> git rm src/main/java/org/promptsyntax.zip
+rm 'src/main/java/org/promptsyntax.zip'
+PS C:\Users\umrej\Downloads\promptsyntax> git commit -m "Remove accidental source zip"
+[main 4fdc261] Remove accidental source zip
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 src/main/java/org/promptsyntax.zip
+PS C:\Users\umrej\Downloads\promptsyntax> git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (6/6), 474 bytes | 474.00 KiB/s, done.
+Total 6 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: This repository moved. Please use the new location:
+remote:   https://github.com/umarejayesh/PromptSyntax.git
+To https://github.com/umarejayesh/promptsyntax.git
+   012f901..4fdc261  main -> main
+PS C:\Users\umrej\Downloads\promptsyntax> mvn clean test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'packageName' is unknown for plugin 'antlr4-maven-plugin:4.13.1:antlr4 (default)'
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ promptsyntax-compiler ---
+[INFO] Deleting C:\Users\umrej\Downloads\promptsyntax\target
+[INFO]
+[INFO] --- antlr4:4.13.1:antlr4 (default) @ promptsyntax-compiler ---
+[INFO] ANTLR 4: Processing source directory C:\Users\umrej\Downloads\promptsyntax\src\main\antlr4
+[INFO] Processing grammar: org\promptsyntax\PromptSyntax.g4
+[INFO]
+[INFO] --- build-helper:3.6.0:add-source (add-source) @ promptsyntax-compiler ---
+[INFO] Source directory: C:\Users\umrej\Downloads\promptsyntax\target\generated-sources\antlr4 added.
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ promptsyntax-compiler ---
+[INFO] skip non existing resourceDirectory C:\Users\umrej\Downloads\promptsyntax\src\main\resources
+[INFO]
+[INFO] --- compiler:3.15.0:compile (default-compile) @ promptsyntax-compiler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 24 source files with javac [debug target 17] to target\classes
+[WARNING] system modules path not set in conjunction with -source 17
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ promptsyntax-compiler ---
+[INFO] skip non existing resourceDirectory C:\Users\umrej\Downloads\promptsyntax\src\test\resources
+[INFO]
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ promptsyntax-compiler ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ promptsyntax-compiler ---
+[INFO] No tests to run.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.179 s
+[INFO] Finished at: 2026-07-03T22:29:51+05:30
+[INFO] ------------------------------------------------------------------------
+PS C:\Users\umrej\Downloads\promptsyntax> java -cp target/classes org.promptsyntax.Main examples/student.psx
+Error: Unable to initialize main class org.promptsyntax.Main
+Caused by: java.lang.NoClassDefFoundError: org/antlr/v4/runtime/CharStream
+PS C:\Users\umrej\Downloads\promptsyntax> mvn exec:java -Dexec.mainClass="org.promptsyntax.Main" -Dexec.args="examples/student.psx"
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/3.1.4/maven-install-plugin-3.1.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/3.1.4/maven-install-plugin-3.1.4.pom (8.1 kB at5.2 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/43/maven-plugins-43.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/43/maven-plugins-43.pom (7.5 kB at 42 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/3.1.4/maven-install-plugin-3.1.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/3.1.4/maven-install-plugin-3.1.4.jar (33 kB at 112 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/3.1.4/maven-deploy-plugin-3.1.4.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/3.1.4/maven-deploy-plugin-3.1.4.pom (9.2 kB at 66 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/3.1.4/maven-deploy-plugin-3.1.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/3.1.4/maven-deploy-plugin-3.1.4.jar (40 kB at 282 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.12.1/maven-site-plugin-3.12.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.12.1/maven-site-plugin-3.12.1.pom (20 kB at 59 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/36/maven-plugins-36.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/36/maven-plugins-36.pom (9.9 kB at 36 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.12.1/maven-site-plugin-3.12.1.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.12.1/maven-site-plugin-3.12.1.jar (119 kB at 410kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Downloading from central: https://repo.maven.apache.org/maven2/org/antlr/maven-metadata.xml
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml (14 kB at 170 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml (21 kB at 60 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/antlr/maven-metadata.xml (535 B at 1.0 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/maven-metadata.xml
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/maven-metadata.xml (1.1 kB at 16 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/3.6.3/exec-maven-plugin-3.6.3.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/3.6.3/exec-maven-plugin-3.6.3.pom (16 kB at 191 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/mojo-parent/94/mojo-parent-94.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/mojo-parent/94/mojo-parent-94.pom (38 kB at 174 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.14.0/junit-bom-5.14.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.14.0/junit-bom-5.14.0.pom (5.7 kB at 32 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/3.6.3/exec-maven-plugin-3.6.3.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/mojo/exec-maven-plugin/3.6.3/exec-maven-plugin-3.6.3.jar (95 kB at 483 kB/s)
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.970 s
+[INFO] Finished at: 2026-07-03T22:31:52+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Unknown lifecycle phase ".mainClass=org.promptsyntax.Main". You must specify a valid lifecycle phase or a goal in the format <plugin-prefix>:<goal>or <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>. Available lifecycle phases are: pre-clean, clean, post-clean, validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-site, site, post-site, site-deploy. -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/LifecyclePhaseNotFoundException
+PS C:\Users\umrej\Downloads\promptsyntax> mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.7.0/maven-dependency-plugin-3.7.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.7.0/maven-dependency-plugin-3.7.0.pom (19 kB at 29 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.7.0/maven-dependency-plugin-3.7.0.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.7.0/maven-dependency-plugin-3.7.0.jar (207kB at 727 kB/s)
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.974 s
+[INFO] Finished at: 2026-07-03T22:32:12+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Unknown lifecycle phase ".outputFile=cp.txt". You must specify a valid lifecycle phase or a goal in the format <plugin-prefix>:<goal> or <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>. Available lifecycle phases are: pre-clean, clean, post-clean, validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-site, site, post-site, site-deploy. -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/LifecyclePhaseNotFoundException
+PS C:\Users\umrej\Downloads\promptsyntax> $cp = Get-Content cp.txt
+Get-Content : Cannot find path 'C:\Users\umrej\Downloads\promptsyntax\cp.txt' because it does not exist.
+At line:1 char:7
++ $cp = Get-Content cp.txt
++       ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\umrej\...ptsyntax\cp.txt:String) [Get-Content], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+PS C:\Users\umrej\Downloads\promptsyntax> java -cp "target/classes;$cp" org.promptsyntax.Main examples/student.psxdir target
+Error: Unable to initialize main class org.promptsyntax.Main
+Caused by: java.lang.NoClassDefFoundError: org/antlr/v4/runtime/CharStream
+PS C:\Users\umrej\Downloads\promptsyntax> dir target
+
+
+    Directory: C:\Users\umrej\Downloads\promptsyntax\target
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        03-07-2026     22:29                classes
+d-----        03-07-2026     22:29                generated-sources
+d-----        03-07-2026     22:29                maven-status
+
+
+PS C:\Users\umrej\Downloads\promptsyntax> mvn "exec:java" "-Dexec.mainClass=org.promptsyntax.Main" "-Dexec.args=examples/student.psx"
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- exec:3.6.3:java (default-cli) @ promptsyntax-compiler ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-util/1.9.24/maven-resolver-util-1.9.24.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-util/1.9.24/maven-resolver-util-1.9.24.pom (2.2 kB at 2.8 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.9.24/maven-resolver-1.9.24.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.9.24/maven-resolver-1.9.24.pom (25 kB at 187 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-api/1.9.24/maven-resolver-api-1.9.24.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-api/1.9.24/maven-resolver-api-1.9.24.pom (2.2 kB at 11 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-exec/1.6.0/commons-exec-1.6.0.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-exec/1.6.0/commons-exec-1.6.0.pom (11 kB at 58 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/93/commons-parent-93.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/93/commons-parent-93.pom (79 kB at 370 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.9.1/asm-commons-9.9.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.9.1/asm-commons-9.9.1.pom (2.8 kB at 17 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.9.1/asm-tree-9.9.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.9.1/asm-tree-9.9.1.pom (2.6 kB at 14 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-util/1.9.24/maven-resolver-util-1.9.24.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-util/1.9.24/maven-resolver-util-1.9.24.jar (196 kB at 546 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-api/1.9.24/maven-resolver-api-1.9.24.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-exec/1.6.0/commons-exec-1.6.0.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.9.1/asm-commons-9.9.1.jar
+Downloading from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.9.1/asm-tree-9.9.1.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-api/1.9.24/maven-resolver-api-1.9.24.jar (157 kB at 1.1 MB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-tree/9.9.1/asm-tree-9.9.1.jar (52 kB at 232 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-exec/1.6.0/commons-exec-1.6.0.jar (69 kB at 289 kB/s)
+Downloaded from central: https://repo.maven.apache.org/maven2/org/ow2/asm/asm-commons/9.9.1/asm-commons-9.9.1.jar (75 kB at 313 kB/s)
+Syntax errors found:
+line 3:0 missing ';' at 'entity'
+line 5:4 missing ';' at 'age'
+line 6:0 missing ';' at '}'
+line 8:0 extraneous input 'constraint' expecting {'entity', 'constraints', 'generate'}
+line 15:4 missing ';' at 'constructor'
+line 16:4 missing ';' at 'getters'
+line 17:4 missing ';' at 'tests'
+line 18:0 missing ';' at '}'
+line 22:4 missing ';' at 'run_tests'
+line 23:0 missing ';' at '}'
+
+PS C:\Users\umrej\Downloads\promptsyntax> mvn "exec:java" "-Dexec.mainClass=org.promptsyntax.Main" "-Dexec.args=examples/student.psx"
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- exec:3.6.3:java (default-cli) @ promptsyntax-compiler ---
+[WARNING]
+org.promptsyntax.semantics.SemanticException: Unknown type for field Student.age: Integer
+    at org.promptsyntax.semantics.SemanticAnalyzer.analyze (SemanticAnalyzer.java:59)
+    at org.promptsyntax.Main.main (Main.java:51)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.mojo.exec.AbstractExecJavaBase.executeMainMethod (AbstractExecJavaBase.java:402)
+    at org.codehaus.mojo.exec.ExecJavaMojo.executeMainMethod (ExecJavaMojo.java:142)
+    at org.codehaus.mojo.exec.AbstractExecJavaBase.doExecClassLoader (AbstractExecJavaBase.java:377)
+    at org.codehaus.mojo.exec.AbstractExecJavaBase.lambda$execute$0 (AbstractExecJavaBase.java:287)
+    at java.lang.Thread.run (Thread.java:1583)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.959 s
+[INFO] Finished at: 2026-07-03T22:38:26+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.mojo:exec-maven-plugin:3.6.3:java (default-cli) on project promptsyntax-compiler: An exception occurred while executing the Java class. Unknown type for field Student.age: Integer -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+PS C:\Users\umrej\Downloads\promptsyntax> mvn "exec:java" "-Dexec.mainClass=org.promptsyntax.Main" "-Dexec.args=examples/student.psx"
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------< org.promptsyntax:promptsyntax-compiler >---------------
+[INFO] Building PromptSyntax Compiler 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- exec:3.6.3:java (default-cli) @ promptsyntax-compiler ---
+=== PromptSyntax Compilation Successful ===
+
+Target: Java17
+Entities: 1
+Backend: gpt
+
+=== Generated Backend Prompt ===
+Generate Java 17 code.
+
+Return only generated source code without explanation.
+
+Create an implementation for entity Student.
+
+Fields:
+- int age
+- String name
+
+Constraints:
+- Satisfy documented.
+- Satisfy clean_code.
+
+Requirements:
+- Include class.
+- Include constructor.
+- Include getters.
+- Include tests.
+
+Validation expectations:
+- The output should pass compile.
+- The output should pass run_tests.
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.862 s
+[INFO] Finished at: 2026-07-03T22:39:48+05:30
+[INFO] ------------------------------------------------------------------------
+PS C:\Users\umrej\Downloads\promptsyntax> git add .
+PS C:\Users\umrej\Downloads\promptsyntax> git commit -m "Run end-to-end PromptSyntax compilation pipeline"
+[main d17b705] Run end-to-end PromptSyntax compilation pipeline
+ 2 files changed, 96 insertions(+), 18 deletions(-)
+PS C:\Users\umrej\Downloads\promptsyntax> git push
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (10/10), 1.76 KiB | 1.76 MiB/s, done.
+Total 10 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: This repository moved. Please use the new location:
+remote:   https://github.com/umarejayesh/PromptSyntax.git
+To https://github.com/umarejayesh/promptsyntax.git
+   4fdc261..d17b705  main -> main
+PS C:\Users\umrej\Downloads\promptsyntax>

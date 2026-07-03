@@ -1,0 +1,21 @@
+target Java17;
+
+entity Book {
+    title : String;
+    author : String;
+    pages : int;
+}
+
+constraints {
+    documented;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+}
+
+verify {
+    compile;
+}

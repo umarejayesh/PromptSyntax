@@ -1,0 +1,10 @@
+target Java17;
+
+entity Student {
+    name : String;
+    name : String;
+}
+
+generate {
+    class;
+}
