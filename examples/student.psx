@@ -1,20 +1,23 @@
-
-target Java
+target Java17;
 
 entity Student {
-    name : String
-    age : Integer
+    name : String;
+    age : int;
 }
 
-constraint {
-    age >= 18
+constraints {
+    documented;
+    clean_code;
 }
 
 generate {
-    CRUD
+    class;
+    constructor;
+    getters;
+    tests;
 }
 
 verify {
-    compile
-    unit_test
+    compile;
+    run_tests;
 }
