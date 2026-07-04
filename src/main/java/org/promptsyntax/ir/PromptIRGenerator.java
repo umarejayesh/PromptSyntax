@@ -91,9 +91,12 @@ public final class PromptIRGenerator {
                 method.parameters().stream()
                         .map(this::parameterToIR)
                         .toList(),
-                method.returnType()
+                method.returnType(),
+                method.contracts().stream()
+                        .map(c -> new IRContract(c.kind(), c.expression()))
+                        .toList()
         );
-    }
+        }
 
     private IRParameter parameterToIR(ParameterNode parameter) {
         return new IRParameter(

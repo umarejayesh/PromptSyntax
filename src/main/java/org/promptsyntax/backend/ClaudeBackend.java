@@ -2,11 +2,13 @@ package org.promptsyntax.backend;
 
 import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IRMethod;
+import org.promptsyntax.ir.IRContract;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.IREnum;
 import org.promptsyntax.ir.IRInterface;
+import org.promptsyntax.ir.IRContract;
 
 
 public class ClaudeBackend implements Backend {
@@ -40,18 +42,29 @@ public class ClaudeBackend implements Backend {
             sb.append("\n");
             if (!entity.methods().isEmpty()) {
                 sb.append("Methods:\n");
-                for (IRMethod method : entity.methods()) {
+               for (IRMethod method : entity.methods()) {
                     sb.append("- ")
-                    .append(method.name())
-                    .append("(");
+                            .append(method.name())
+                            .append("(");
 
                     sb.append(method.parameters().stream()
-                    .map(p -> p.type() + " " + p.name())
-                    .collect(java.util.stream.Collectors.joining(", ")));
+                            .map(p -> p.type() + " " + p.name())
+                            .collect(java.util.stream.Collectors.joining(", ")));
 
                     sb.append(") : ")
-                    .append(method.returnType())
-                    .append("\n");
+                            .append(method.returnType())
+                            .append("\n");
+
+                    if (!method.contracts().isEmpty()) {
+                        sb.append("  Contracts:\n");
+                        for (IRContract contract : method.contracts()) {
+                            sb.append("  - ")
+                                    .append(contract.kind())
+                                    .append(" ")
+                                    .append(contract.expression())
+                                    .append("\n");
+                        }
+                    }
                 }
                 sb.append("\n");
             }

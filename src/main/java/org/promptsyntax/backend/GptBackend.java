@@ -1,5 +1,6 @@
 package org.promptsyntax.backend;
 
+import org.promptsyntax.ir.IRContract;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IRMethod;
@@ -48,19 +49,30 @@ public final class GptBackend implements Backend {
             sb.append("\n");
             if (!entity.methods().isEmpty()) {
                 sb.append("Methods:\n");
-                for (IRMethod method : entity.methods()) {
-                    sb.append("- ")
-                    .append(method.name())
-                    .append("(");
+            for (IRMethod method : entity.methods()) {
+                sb.append("- ")
+                        .append(method.name())
+                        .append("(");
 
-                    sb.append(method.parameters().stream()
-                    .map(p -> p.type() + " " + p.name())
-                    .collect(java.util.stream.Collectors.joining(", ")));
+                sb.append(method.parameters().stream()
+                        .map(p -> p.type() + " " + p.name())
+                        .collect(java.util.stream.Collectors.joining(", ")));
 
-                    sb.append(") : ")
-                    .append(method.returnType())
-                    .append("\n");
+                sb.append(") : ")
+                        .append(method.returnType())
+                        .append("\n");
+
+                if (!method.contracts().isEmpty()) {
+                    sb.append("  Contracts:\n");
+                    for (IRContract contract : method.contracts()) {
+                        sb.append("  - ")
+                                .append(contract.kind())
+                                .append(" ")
+                                .append(contract.expression())
+                                .append("\n");
+                    }
                 }
+            }
                 sb.append("\n");
             }
         }

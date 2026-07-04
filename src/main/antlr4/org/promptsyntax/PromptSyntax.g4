@@ -31,7 +31,20 @@ entityMember
     ;
 
 methodDecl
-    : METHOD IDENTIFIER LPAREN parameterList? RPAREN COLON typeName SEMI
+    : METHOD IDENTIFIER LPAREN parameterList? RPAREN COLON typeName contractBlock? SEMI
+    ;
+
+contractBlock
+    : LBRACE contractItem* RBRACE
+    ;
+
+contractItem
+    : REQUIRES expression SEMI
+    | ENSURES expression SEMI
+    ;
+
+expression
+    : CONTRACT_EXPR
     ;
 
 parameterList
@@ -96,6 +109,9 @@ RUN_TESTS : 'run_tests';
 LINT : 'lint';
 METHOD : 'method';
 EXTENDS : 'extends';
+REQUIRES : 'requires';
+ENSURES  : 'ensures';
+
 
 
 COMMA : ',';
@@ -110,6 +126,7 @@ SEMI : ';';
 LPAREN : '(';
 RPAREN : ')';
 
+CONTRACT_EXPR : '"' ~["\r\n]* '"' ;
 IDENTIFIER : [A-Za-z] [A-Za-z0-9_]* ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;

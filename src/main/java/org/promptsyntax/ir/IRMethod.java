@@ -5,5 +5,6 @@ import java.util.List;
 public record IRMethod(
         String name,
         List<IRParameter> parameters,
-        String returnType
+        String returnType,
+        List<IRContract> contracts
 ) {}

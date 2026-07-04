@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import org.promptsyntax.PromptSyntaxBaseVisitor;
 import org.promptsyntax.PromptSyntaxParser;
+import org.promptsyntax.ast.ContractNode;
 import org.promptsyntax.ast.EntityNode;
 import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
+import org.promptsyntax.ast.InterfaceNode;
 import org.promptsyntax.ast.MethodNode;
 import org.promptsyntax.ast.ParameterNode;
 import org.promptsyntax.ast.ProgramNode;
-import org.promptsyntax.ast.InterfaceNode;
 
 public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
@@ -141,10 +142,22 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
+        List<ContractNode> contracts = new ArrayList<>();
+
+        if (ctx.contractBlock() != null) {
+            for (PromptSyntaxParser.ContractItemContext cctx : ctx.contractBlock().contractItem()) {
+                String kind = cctx.getChild(0).getText();
+                String expression = cctx.expression().getText().trim();
+
+                contracts.add(new ContractNode(kind, expression));
+            }
+        }
+
         return new MethodNode(
-                ctx.IDENTIFIER().getText(),
-                parameters,
-                ctx.typeName().getText()
-        );
+            ctx.IDENTIFIER().getText(),
+            parameters,
+            ctx.typeName().getText(),
+            contracts
+    );
     }
 }
