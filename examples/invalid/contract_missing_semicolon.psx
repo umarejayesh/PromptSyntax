@@ -1,0 +1,14 @@
+target Java17;
+
+entity Account {
+    balance : int;
+
+    method withdraw(amount : int) : boolean {
+        requires "amount > 0"
+        ensures "balance >= 0";
+    };
+}
+
+generate {
+    class;
+}
