@@ -5,9 +5,9 @@ import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IRMethod;
 import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.PromptIR;
-import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.IREnum;
-import org.promptsyntax.ir.IRMethod;
+import org.promptsyntax.ir.IRInterface;
+
 
 public final class GptBackend implements Backend {
 
@@ -31,8 +31,16 @@ public final class GptBackend implements Backend {
             sb.append("\n");
         }
         appendEnums(sb, ir);
+        appendInterfaces(sb, ir);
         for (IREntity entity : ir.entities()) {
             sb.append("Create an implementation for entity ").append(entity.name()).append(".\n\n");
+            if (!entity.interfaces().isEmpty()) {
+                sb.append("Implements:\n");
+                for (String iface : entity.interfaces()) {
+                    sb.append("- ").append(iface).append("\n");
+                }
+                sb.append("\n");
+            }
             sb.append("Fields:\n");
             for (IRField field : entity.fields()) {
                 sb.append("- ").append(field.type()).append(" ").append(field.name()).append("\n");
@@ -113,4 +121,21 @@ public final class GptBackend implements Backend {
         }
         sb.append("\n");
     }
+private void appendInterfaces(StringBuilder sb, PromptIR ir) {
+    if (ir.interfaces().isEmpty()) return;
+
+    sb.append("Interfaces:\n");
+    for (IRInterface iface : ir.interfaces()) {
+        sb.append("- ").append(iface.name()).append("\n");
+        sb.append("  Fields:\n");
+        for (IRField field : iface.fields()) {
+            sb.append("  - ")
+                    .append(field.type())
+                    .append(" ")
+                    .append(field.name())
+                    .append("\n");
+        }
+    }
+    sb.append("\n");
+}
 }

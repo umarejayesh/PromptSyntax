@@ -6,7 +6,7 @@ import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IREnum;
-import org.promptsyntax.ir.IRMethod;
+import org.promptsyntax.ir.IRInterface;
 
 public class GeminiBackend implements Backend {
     @Override
@@ -21,8 +21,16 @@ public class GeminiBackend implements Backend {
         sb.append("Task: Generate ").append(ir.target()).append(" source code.\n");
         sb.append("Output format: source code only.\n\n");
         appendEnums(sb, ir);
+        appendInterfaces(sb, ir);
         for (IREntity entity : ir.entities()) {
             sb.append("Entity ").append(entity.name()).append(" must be implemented with these fields:\n");
+            if (!entity.interfaces().isEmpty()) {
+                sb.append("Implements:\n");
+                for (String iface : entity.interfaces()) {
+                    sb.append("- ").append(iface).append("\n");
+                }
+                sb.append("\n");
+            }
             for (IRField field : entity.fields()) {
                 sb.append("* ").append(field.type()).append(" ").append(field.name()).append("\n");
             }
@@ -89,4 +97,22 @@ public class GeminiBackend implements Backend {
         }
         sb.append("\n");
     }
+private void appendInterfaces(StringBuilder sb, PromptIR ir) {
+    if (ir.interfaces().isEmpty()) return;
+
+    sb.append("Interfaces:\n");
+    for (IRInterface iface : ir.interfaces()) {
+        sb.append("- ").append(iface.name()).append("\n");
+        sb.append("  Fields:\n");
+        for (IRField field : iface.fields()) {
+            sb.append("  - ")
+                    .append(field.type())
+                    .append(" ")
+                    .append(field.name())
+                    .append("\n");
+        }
+    }
+    sb.append("\n");
+}
+
 }

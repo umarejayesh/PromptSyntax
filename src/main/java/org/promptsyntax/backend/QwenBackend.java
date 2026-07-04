@@ -5,7 +5,7 @@ import org.promptsyntax.ir.IRMethod;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IREnum;
-import org.promptsyntax.ir.IRMethod;
+import org.promptsyntax.ir.IRInterface;
 
 public class QwenBackend implements Backend {
     @Override
@@ -20,9 +20,17 @@ public class QwenBackend implements Backend {
         sb.append("Generate ").append(ir.target()).append(" code.\n");
         sb.append("Strictly return code only.\n\n");
         appendEnums(sb, ir);
+        appendInterfaces(sb, ir);
         
         for (IREntity entity : ir.entities()) {
             sb.append("Class/entity: ").append(entity.name()).append("\n");
+            if (!entity.interfaces().isEmpty()) {
+                sb.append("Implements:\n");
+                for (String iface : entity.interfaces()) {
+                    sb.append("- ").append(iface).append("\n");
+                }
+                sb.append("\n");
+            }
             sb.append("Field specification:\n");
             for (IRField field : entity.fields()) {
                 sb.append("- ").append(field.type()).append(" ").append(field.name()).append("\n");
@@ -76,4 +84,22 @@ public class QwenBackend implements Backend {
         }
         sb.append("\n");
     }
+    
+private void appendInterfaces(StringBuilder sb, PromptIR ir) {
+    if (ir.interfaces().isEmpty()) return;
+
+    sb.append("Interfaces:\n");
+    for (IRInterface iface : ir.interfaces()) {
+        sb.append("- ").append(iface.name()).append("\n");
+        sb.append("  Fields:\n");
+        for (IRField field : iface.fields()) {
+            sb.append("  - ")
+                    .append(field.type())
+                    .append(" ")
+                    .append(field.name())
+                    .append("\n");
+        }
     }
+    sb.append("\n");
+}
+}
