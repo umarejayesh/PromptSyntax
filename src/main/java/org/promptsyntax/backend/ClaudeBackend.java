@@ -3,6 +3,7 @@ package org.promptsyntax.backend;
 import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
+import org.promptsyntax.ir.IRRelation;
 
 public class ClaudeBackend implements Backend {
     @Override
@@ -26,7 +27,19 @@ public class ClaudeBackend implements Backend {
             }
             sb.append("\n");
         }
-
+        if (!ir.relations().isEmpty()) {
+            sb.append("Relationships:\n");
+            for (IRRelation r : ir.relations()) {
+                sb.append("- ")
+                        .append(r.sourceEntity())
+                        .append(".")
+                        .append(r.fieldName())
+                        .append(" -> ")
+                        .append(r.targetEntity())
+                        .append("\n");
+            }
+            sb.append("\n");
+        }
         appendList(sb, "Constraints", ir.constraints());
         appendList(sb, "Generation requirements", ir.generate());
         appendList(sb, "Validation expectations", ir.verify());

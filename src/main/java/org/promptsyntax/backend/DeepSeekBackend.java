@@ -26,11 +26,9 @@ public class DeepSeekBackend implements Backend {
             sb.append("\n");
         }
 
-        appendList(sb, "Semantic constraints", ir.generate());
-        appendList(sb, "Required code elements", ir.verify());
-	appendList(sb, "Semantic constraints", ir.constraints());
-	appendList(sb, "Required code elements", ir.generate());
-	appendList(sb, "Validation criteria", ir.verify());
+	    appendList(sb, "Semantic constraints", ir.constraints());
+	    appendList(sb, "Required code elements", ir.generate());
+	    appendList(sb, "Validation criteria", ir.verify());
 
 
         return sb.toString();
