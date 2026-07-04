@@ -1,0 +1,11 @@
+target Java17;
+
+entity Student {
+    id : int;
+    method displayName() : String;
+    method displayName() : String;
+}
+
+generate {
+    class;
+}
