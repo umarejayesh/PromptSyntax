@@ -1,15 +1,17 @@
 package org.promptsyntax.frontend;
 
-import org.promptsyntax.ast.EntityNode;
-import org.promptsyntax.ast.EnumNode;
-import org.promptsyntax.ast.FieldNode;
-import org.promptsyntax.ast.ProgramNode;
-import org.promptsyntax.PromptSyntaxBaseVisitor;
-import org.promptsyntax.PromptSyntaxParser;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.promptsyntax.PromptSyntaxBaseVisitor;
+import org.promptsyntax.PromptSyntaxParser;
+import org.promptsyntax.ast.EntityNode;
+import org.promptsyntax.ast.EnumNode;
+import org.promptsyntax.ast.FieldNode;
+import org.promptsyntax.ast.MethodNode;
+import org.promptsyntax.ast.ParameterNode;
+import org.promptsyntax.ast.ProgramNode;
 
 public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
@@ -76,7 +78,6 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
     @Override
     public EntityNode visitEntityDecl(PromptSyntaxParser.EntityDeclContext ctx) {
-
         String name = ctx.IDENTIFIER().getText();
 
         List<String> interfaces = new ArrayList<>();
@@ -88,22 +89,42 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
         }
 
         List<FieldNode> fields = new ArrayList<>();
+        List<MethodNode> methods = new ArrayList<>();
 
-        for (PromptSyntaxParser.FieldDeclContext fctx : ctx.fieldDecl()) {
-            fields.add((FieldNode) visitFieldDecl(fctx));
+        for (PromptSyntaxParser.EntityMemberContext member : ctx.entityMember()) {
+            if (member.fieldDecl() != null) {
+                fields.add((FieldNode) visitFieldDecl(member.fieldDecl()));
+            } else if (member.methodDecl() != null) {
+                methods.add((MethodNode) visitMethodDecl(member.methodDecl()));
+            }
         }
 
-        return new EntityNode(
-                name,
-                interfaces,
-                fields
-        );
+        return new EntityNode(name, interfaces, fields, methods);
     }
 
     @Override
     public FieldNode visitFieldDecl(PromptSyntaxParser.FieldDeclContext ctx) {
         return new FieldNode(
                 ctx.IDENTIFIER().getText(),
+                ctx.typeName().getText()
+        );
+    }
+    @Override
+    public MethodNode visitMethodDecl(PromptSyntaxParser.MethodDeclContext ctx) {
+        List<ParameterNode> parameters = new ArrayList<>();
+
+        if (ctx.parameterList() != null) {
+            for (PromptSyntaxParser.ParameterContext pctx : ctx.parameterList().parameter()) {
+                parameters.add(new ParameterNode(
+                        pctx.IDENTIFIER().getText(),
+                        pctx.typeName().getText()
+                ));
+            }
+        }
+
+        return new MethodNode(
+                ctx.IDENTIFIER().getText(),
+                parameters,
                 ctx.typeName().getText()
         );
     }

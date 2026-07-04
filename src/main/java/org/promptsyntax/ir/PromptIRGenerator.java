@@ -3,6 +3,8 @@ package org.promptsyntax.ir;
 import org.promptsyntax.ast.EntityNode;
 import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
+import org.promptsyntax.ast.MethodNode;
+import org.promptsyntax.ast.ParameterNode;
 import org.promptsyntax.ast.ProgramNode;
 
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.promptsyntax.ast.MethodNode;
+import org.promptsyntax.ast.ParameterNode;
 
 public final class PromptIRGenerator {
 
@@ -64,11 +68,31 @@ public final class PromptIRGenerator {
                 List.copyOf(entity.interfaces()),
                 entity.fields().stream()
                         .map(this::fieldToIR)
+                        .toList(),
+                entity.methods().stream()
+                        .map(this::methodToIR)
                         .toList()
         );
     }
 
     private IRField fieldToIR(FieldNode field) {
         return new IRField(field.name(), field.typeName());
+    }
+
+    private IRMethod methodToIR(MethodNode method) {
+        return new IRMethod(
+                method.name(),
+                method.parameters().stream()
+                        .map(this::parameterToIR)
+                        .toList(),
+                method.returnType()
+        );
+    }
+
+    private IRParameter parameterToIR(ParameterNode parameter) {
+        return new IRParameter(
+                parameter.name(),
+                parameter.typeName()
+        );
     }
 }

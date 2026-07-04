@@ -5,5 +5,6 @@ import java.util.List;
 public record IREntity(
         String name,
         List<String> interfaces,
-        List<IRField> fields
+        List<IRField> fields,
+        List<IRMethod> methods
 ) {}

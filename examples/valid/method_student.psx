@@ -1,0 +1,26 @@
+target Java17;
+
+entity Student {
+    id : int;
+    name : String;
+    marks : List<int>;
+    method displayName() : String;
+    method calculateAverage(marks : List<int>) : double;
+}
+
+constraints {
+    documented;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

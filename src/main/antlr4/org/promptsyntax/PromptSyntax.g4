@@ -21,7 +21,24 @@ enumItem : IDENTIFIER SEMI ;
 
 interfaceDecl : INTERFACE IDENTIFIER LBRACE fieldDecl+ RBRACE ;
 
-entityDecl : ENTITY IDENTIFIER implementsClause? LBRACE fieldDecl+ RBRACE ;
+entityDecl : ENTITY IDENTIFIER implementsClause? LBRACE entityMember+ RBRACE ;
+
+entityMember
+    : fieldDecl
+    | methodDecl
+    ;
+
+methodDecl
+    : METHOD IDENTIFIER LPAREN parameterList? RPAREN COLON typeName SEMI
+    ;
+
+parameterList
+    : parameter (COMMA parameter)*
+    ;
+
+parameter
+    : IDENTIFIER COLON typeName
+    ;
 implementsClause : IMPLEMENTS IDENTIFIER (COMMA IDENTIFIER)* ;
 
 fieldDecl : IDENTIFIER COLON typeName SEMI ;
@@ -74,6 +91,8 @@ TOSTRING : 'tostring';
 COMPILE : 'compile';
 RUN_TESTS : 'run_tests';
 LINT : 'lint';
+METHOD : 'method';
+
 
 COMMA : ',';
 LT : '<';
@@ -84,6 +103,8 @@ LBRACE : '{';
 RBRACE : '}';
 COLON : ':';
 SEMI : ';';
+LPAREN : '(';
+RPAREN : ')';
 
 IDENTIFIER : [A-Za-z] [A-Za-z0-9_]* ;
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;

@@ -1,9 +1,11 @@
 package org.promptsyntax.backend;
 
 import org.promptsyntax.ir.IRField;
+import org.promptsyntax.ir.IRMethod;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IREnum;
+import org.promptsyntax.ir.IRMethod;
 
 public class QwenBackend implements Backend {
     @Override
@@ -26,6 +28,23 @@ public class QwenBackend implements Backend {
                 sb.append("- ").append(field.type()).append(" ").append(field.name()).append("\n");
             }
             sb.append("\n");
+            if (!entity.methods().isEmpty()) {
+                sb.append("Methods:\n");
+                for (IRMethod method : entity.methods()) {
+                    sb.append("- ")
+                    .append(method.name())
+                    .append("(");
+
+                    sb.append(method.parameters().stream()
+                    .map(p -> p.type() + " " + p.name())
+                    .collect(java.util.stream.Collectors.joining(", ")));
+
+                    sb.append(") : ")
+                    .append(method.returnType())
+                    .append("\n");
+                }
+                sb.append("\n");
+            }
         }
 
 	appendList(sb, "Constraints to satisfy", ir.constraints());
