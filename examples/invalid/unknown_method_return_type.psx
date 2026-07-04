@@ -1,0 +1,10 @@
+target Java17;
+
+entity Student {
+    id : int;
+    method calculateGrade() : Grade;
+}
+
+generate {
+    class;
+}

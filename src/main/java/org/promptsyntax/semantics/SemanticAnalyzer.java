@@ -76,6 +76,41 @@ public final class SemanticAnalyzer {
                             "Duplicate field declaration in entity " + entity.name() + ": " + field.name()
                     );
                 }
+                Set<String> methodNames = new HashSet<>();
+
+                for (var method : entity.methods()) {
+                    if (!methodNames.add(method.name())) {
+                        throw new SemanticException(
+                                "Duplicate method declaration in entity " + entity.name() + ": " + method.name()
+                        );
+                    }
+
+                    if (resolveType(method.returnType(), registry) == null) {
+                        throw new SemanticException(
+                                "Unknown return type '" + method.returnType()
+                                        + "' for method " + entity.name() + "." + method.name()
+                        );
+                    }
+
+                    Set<String> parameterNames = new HashSet<>();
+
+                    for (var parameter : method.parameters()) {
+                        if (!parameterNames.add(parameter.name())) {
+                            throw new SemanticException(
+                                    "Duplicate parameter in method "
+                                            + entity.name() + "." + method.name() + ": " + parameter.name()
+                            );
+                        }
+
+                        if (resolveType(parameter.typeName(), registry) == null) {
+                            throw new SemanticException(
+                                    "Unknown parameter type '" + parameter.typeName()
+                                            + "' for parameter " + entity.name() + "."
+                                            + method.name() + "." + parameter.name()
+                            );
+                        }
+                    }
+                }
 
 		Type resolvedType = resolveType(field.typeName(), registry);
 		if (resolvedType == null) {
