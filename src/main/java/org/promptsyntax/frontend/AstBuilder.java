@@ -12,12 +12,14 @@ import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.MethodNode;
 import org.promptsyntax.ast.ParameterNode;
 import org.promptsyntax.ast.ProgramNode;
+import org.promptsyntax.ast.InterfaceNode;
 
 public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
     @Override
     public ProgramNode visitProgram(PromptSyntaxParser.ProgramContext ctx) {
         String target = ctx.targetDecl().IDENTIFIER().getText();
+        
 
         Optional<String> packageName = Optional.empty();
         if (ctx.packageDecl() != null) {
@@ -30,18 +32,19 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
                 imports.add(ictx.getText().replace(";", ""));
             }
         }
-
         List<EnumNode> enums = new ArrayList<>();
+        List<InterfaceNode> interfaces = new ArrayList<>();
         List<EntityNode> entities = new ArrayList<>();
 
         for (PromptSyntaxParser.TopLevelDeclContext dctx : ctx.topLevelDecl()) {
             if (dctx.enumDecl() != null) {
                 enums.add((EnumNode) visitEnumDecl(dctx.enumDecl()));
+            } else if (dctx.interfaceDecl() != null) {
+                interfaces.add((InterfaceNode) visitInterfaceDecl(dctx.interfaceDecl()));
             } else if (dctx.entityDecl() != null) {
                 entities.add((EntityNode) visitEntityDecl(dctx.entityDecl()));
             }
         }
-
         List<String> constraints = new ArrayList<>();
         if (ctx.constraintBlock() != null) {
             for (PromptSyntaxParser.ConstraintItemContext cctx : ctx.constraintBlock().constraintItem()) {
@@ -61,7 +64,7 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
-        return new ProgramNode(target, packageName, imports, enums, entities, constraints, generation, verification);
+        return new ProgramNode(target, packageName, imports, enums, interfaces, entities, constraints, generation, verification);
     }
 
     @Override
@@ -74,6 +77,17 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
         return new EnumNode(name, values);
     }
 
+    @Override
+    public InterfaceNode visitInterfaceDecl(PromptSyntaxParser.InterfaceDeclContext ctx) {
+        String name = ctx.IDENTIFIER().getText();
+        List<FieldNode> fields = new ArrayList<>();
+
+        for (PromptSyntaxParser.FieldDeclContext fctx : ctx.fieldDecl()) {
+            fields.add((FieldNode) visitFieldDecl(fctx));
+        }
+
+        return new InterfaceNode(name, fields);
+    }
 
 
     @Override

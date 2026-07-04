@@ -1,0 +1,9 @@
+target Java17;
+
+entity Student implements Printable {
+    id : int;
+}
+
+generate {
+    class;
+}

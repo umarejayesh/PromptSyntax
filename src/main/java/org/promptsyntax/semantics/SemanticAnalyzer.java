@@ -56,6 +56,51 @@ public final class SemanticAnalyzer {
             registry.registerEnum(enumNode.name());
         }
 
+        Set<String> interfaceNames = new HashSet<>();
+
+        for (var iface : program.interfaces()) {
+            if (!typeNames.add(iface.name())) {
+                throw new SemanticException("Duplicate interface declaration: " + iface.name());
+            }
+
+            interfaceNames.add(iface.name());
+
+            Set<String> interfaceFieldNames = new HashSet<>();
+
+            for (FieldNode field : iface.fields()) {
+                if (!interfaceFieldNames.add(field.name())) {
+                    throw new SemanticException(
+                            "Duplicate field declaration in interface " + iface.name() + ": " + field.name()
+                    );
+                }
+
+                if (resolveType(field.typeName(), registry) == null) {
+                    throw new SemanticException(
+                            "Unknown type '" + field.typeName() + "' for field "
+                                    + iface.name() + "." + field.name()
+                    );
+                }
+            }
+        }
+
+        for (EntityNode entity : program.entities()) {
+            Set<String> implemented = new HashSet<>();
+
+            for (String iface : entity.interfaces()) {
+                if (!implemented.add(iface)) {
+                    throw new SemanticException(
+                            "Duplicate implemented interface in entity " + entity.name() + ": " + iface
+                    );
+                }
+
+                if (!interfaceNames.contains(iface)) {
+                    throw new SemanticException(
+                            "Unknown interface implemented by " + entity.name() + ": " + iface
+                    );
+                }
+            }
+        }
+
         for (EntityNode entity : program.entities()) {
             if (!typeNames.add(entity.name())) {
                 throw new SemanticException("Duplicate entity declaration: " + entity.name());

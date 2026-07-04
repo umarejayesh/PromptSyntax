@@ -1,0 +1,14 @@
+target Java17;
+
+interface Identifiable {
+    id : int;
+}
+
+entity Student implements Identifiable {
+    id : int;
+    name : String;
+}
+
+generate {
+    class;
+}

@@ -1,7 +1,6 @@
 package org.promptsyntax.ir;
 
 import org.promptsyntax.ast.EntityNode;
-import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.MethodNode;
 import org.promptsyntax.ast.ParameterNode;
@@ -12,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.promptsyntax.ast.MethodNode;
-import org.promptsyntax.ast.ParameterNode;
 
 public final class PromptIRGenerator {
 
@@ -24,6 +21,13 @@ public final class PromptIRGenerator {
 
         List<IREnum> enums = program.enums().stream()
                 .map(e -> new IREnum(e.name(), List.copyOf(e.values())))
+                .toList();
+
+        List<IRInterface> interfaces = program.interfaces().stream()
+                .map(i -> new IRInterface(
+                        i.name(),
+                        i.fields().stream().map(this::fieldToIR).toList()
+                ))
                 .toList();
 
         List<IREntity> entities = program.entities().stream()
@@ -40,23 +44,24 @@ public final class PromptIRGenerator {
         }
 
         return new PromptIR(
-                "2.2",
+                "2.3",
                 "PromptSyntax",
                 program.target(),
                 program.packageName(),
                 List.copyOf(program.imports()),
                 enums,
+                interfaces,
                 entities,
-                List.of(),
                 List.copyOf(relations),
                 List.copyOf(program.constraints()),
                 List.copyOf(program.generationDirectives()),
                 List.copyOf(program.verificationDirectives()),
                 Map.of(),
                 Map.of(
-                        "version", "2.2",
+                        "version", "2.3",
                         "ir", "PromptIR",
                         "enums", String.valueOf(enums.size()),
+                        "interfaces", String.valueOf(interfaces.size()),
                         "relations", String.valueOf(relations.size())
                 )
         );
