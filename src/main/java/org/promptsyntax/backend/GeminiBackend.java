@@ -4,6 +4,7 @@ import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
+import org.promptsyntax.ir.IREnum;
 
 public class GeminiBackend implements Backend {
     @Override
@@ -17,7 +18,7 @@ public class GeminiBackend implements Backend {
 
         sb.append("Task: Generate ").append(ir.target()).append(" source code.\n");
         sb.append("Output format: source code only.\n\n");
-
+        appendEnums(sb, ir);
         for (IREntity entity : ir.entities()) {
             sb.append("Entity ").append(entity.name()).append(" must be implemented with these fields:\n");
             for (IRField field : entity.fields()) {
@@ -43,6 +44,7 @@ public class GeminiBackend implements Backend {
         appendList(sb, "Rules", ir.constraints());
         appendList(sb, "Required features", ir.generate());
         appendList(sb, "The generated code must satisfy", ir.verify());
+    
 
         return sb.toString();
     }
@@ -52,6 +54,19 @@ public class GeminiBackend implements Backend {
         sb.append(title).append(":\n");
         for (String item : items) {
             sb.append("* ").append(item).append("\n");
+        }
+        sb.append("\n");
+    }
+    private void appendEnums(StringBuilder sb, PromptIR ir) {
+        if (ir.enums().isEmpty()) return;
+
+        sb.append("Enumerations:\n");
+        for (IREnum e : ir.enums()) {
+            sb.append("- ")
+                    .append(e.name())
+                    .append(" values: ")
+                    .append(String.join(", ", e.values()))
+                    .append("\n");
         }
         sb.append("\n");
     }

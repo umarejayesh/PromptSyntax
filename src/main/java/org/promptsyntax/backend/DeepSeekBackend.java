@@ -3,6 +3,7 @@ package org.promptsyntax.backend;
 import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
+import org.promptsyntax.ir.IREnum;
 
 public class DeepSeekBackend implements Backend {
     @Override
@@ -16,7 +17,7 @@ public class DeepSeekBackend implements Backend {
 
         sb.append("You are generating compilable ").append(ir.target()).append(" code.\n");
         sb.append("Only output the final source code.\n\n");
-
+        appendEnums(sb, ir);
         for (IREntity entity : ir.entities()) {
             sb.append("Implement: ").append(entity.name()).append("\n");
             sb.append("Members:\n");
@@ -39,6 +40,19 @@ public class DeepSeekBackend implements Backend {
         sb.append(title).append(":\n");
         for (String item : items) {
             sb.append("- ").append(item).append("\n");
+        }
+        sb.append("\n");
+    }
+    private void appendEnums(StringBuilder sb, PromptIR ir) {
+        if (ir.enums().isEmpty()) return;
+
+        sb.append("Enumerations:\n");
+        for (IREnum e : ir.enums()) {
+            sb.append("- ")
+                    .append(e.name())
+                    .append(" values: ")
+                    .append(String.join(", ", e.values()))
+                    .append("\n");
         }
         sb.append("\n");
     }

@@ -3,6 +3,7 @@ package org.promptsyntax.backend;
 import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.PromptIR;
+import org.promptsyntax.ir.IREnum;
 
 public class QwenBackend implements Backend {
     @Override
@@ -16,7 +17,8 @@ public class QwenBackend implements Backend {
 
         sb.append("Generate ").append(ir.target()).append(" code.\n");
         sb.append("Strictly return code only.\n\n");
-
+        appendEnums(sb, ir);
+        
         for (IREntity entity : ir.entities()) {
             sb.append("Class/entity: ").append(entity.name()).append("\n");
             sb.append("Field specification:\n");
@@ -30,6 +32,7 @@ public class QwenBackend implements Backend {
 	appendList(sb, "Implementation requirements", ir.generate());
 	appendList(sb, "Verification goals", ir.verify());
 
+
         return sb.toString();
     }
 
@@ -41,4 +44,17 @@ public class QwenBackend implements Backend {
         }
         sb.append("\n");
     }
-}
+    private void appendEnums(StringBuilder sb, PromptIR ir) {
+        if (ir.enums().isEmpty()) return;
+
+        sb.append("Enumerations:\n");
+        for (IREnum e : ir.enums()) {
+            sb.append("- ")
+                    .append(e.name())
+                    .append(" values: ")
+                    .append(String.join(", ", e.values()))
+                    .append("\n");
+        }
+        sb.append("\n");
+    }
+    }

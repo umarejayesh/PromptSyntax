@@ -28,7 +28,7 @@ public final class GptBackend implements Backend {
             for (String imp : ir.imports()) sb.append("- ").append(imp).append("\n");
             sb.append("\n");
         }
-
+        appendEnums(sb, ir);
         for (IREntity entity : ir.entities()) {
             sb.append("Create an implementation for entity ").append(entity.name()).append(".\n\n");
             sb.append("Fields:\n");
@@ -80,5 +80,18 @@ public final class GptBackend implements Backend {
             case "C++17" -> "C++17";
             default -> target;
         };
+    }
+    private void appendEnums(StringBuilder sb, PromptIR ir) {
+        if (ir.enums().isEmpty()) return;
+
+        sb.append("Enumerations:\n");
+        for (IREnum e : ir.enums()) {
+            sb.append("- ")
+                    .append(e.name())
+                    .append(" values: ")
+                    .append(String.join(", ", e.values()))
+                    .append("\n");
+        }
+        sb.append("\n");
     }
 }
