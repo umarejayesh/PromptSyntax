@@ -3,6 +3,8 @@ package org.promptsyntax.semantics;
 import org.promptsyntax.ast.EntityNode;
 import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.ProgramNode;
+import org.promptsyntax.types.Type;
+import org.promptsyntax.types.TypeRegistry;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,15 +14,12 @@ public final class SemanticAnalyzer {
     private static final Set<String> SUPPORTED_TARGETS =
             Set.of("Java17", "Python3", "C++17", "Rust", "Go");
 
-    private static final Set<String> PRIMITIVE_TYPES =
-            Set.of("int", "long", "float", "double", "boolean", "char", "String");
-
     private static final Set<String> CONSTRAINT_VOCABULARY =
             Set.of("immutable", "documented", "serializable", "clean_code", "low_complexity");
 
     private static final Set<String> GENERATION_VOCABULARY =
             Set.of("class", "constructor", "getters", "setters", "builder", "tests",
-                   "documentation", "equals", "hashcode", "tostring");
+                    "documentation", "equals", "hashcode", "tostring");
 
     private static final Set<String> VERIFICATION_VOCABULARY =
             Set.of("compile", "run_tests", "lint");
@@ -34,14 +33,14 @@ public final class SemanticAnalyzer {
             throw new SemanticException("At least one entity declaration is required.");
         }
 
+        TypeRegistry registry = new TypeRegistry();
         Set<String> entityNames = new HashSet<>();
-        Set<String> declaredTypes = new HashSet<>();
 
         for (EntityNode entity : program.entities()) {
             if (!entityNames.add(entity.name())) {
                 throw new SemanticException("Duplicate entity declaration: " + entity.name());
             }
-            declaredTypes.add(entity.name());
+            registry.registerEntity(entity.name());
         }
 
         for (EntityNode entity : program.entities()) {
@@ -50,13 +49,20 @@ public final class SemanticAnalyzer {
             }
 
             Set<String> fieldNames = new HashSet<>();
+
             for (FieldNode field : entity.fields()) {
                 if (!fieldNames.add(field.name())) {
-                    throw new SemanticException("Duplicate field declaration in entity " + entity.name() + ": " + field.name());
+                    throw new SemanticException(
+                            "Duplicate field declaration in entity " + entity.name() + ": " + field.name()
+                    );
                 }
 
-                if (!PRIMITIVE_TYPES.contains(field.typeName()) && !declaredTypes.contains(field.typeName())) {
-                    throw new SemanticException("Unknown type for field " + entity.name() + "." + field.name() + ": " + field.typeName());
+                Type resolvedType = registry.resolve(field.typeName());
+                if (resolvedType == null) {
+                    throw new SemanticException(
+                            "Unknown type '" + field.typeName() + "' for field "
+                                    + entity.name() + "." + field.name()
+                    );
                 }
             }
         }
