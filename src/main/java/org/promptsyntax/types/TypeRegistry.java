@@ -16,6 +16,10 @@ public final class TypeRegistry {
         types.put(entityName, new EntityType(entityName));
     }
 
+    public void registerEnum(String enumName) {
+        types.put(enumName, new EntityType(enumName));
+    }
+
     public Type resolve(String typeName) {
         return types.get(typeName);
     }

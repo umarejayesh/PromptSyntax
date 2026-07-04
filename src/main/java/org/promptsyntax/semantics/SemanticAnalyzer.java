@@ -1,6 +1,7 @@
 package org.promptsyntax.semantics;
 
 import org.promptsyntax.ast.EntityNode;
+import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.ProgramNode;
 import org.promptsyntax.types.Type;
@@ -34,10 +35,29 @@ public final class SemanticAnalyzer {
         }
 
         TypeRegistry registry = new TypeRegistry();
-        Set<String> entityNames = new HashSet<>();
+        Set<String> typeNames = new HashSet<>();
+
+        for (EnumNode enumNode : program.enums()) {
+            if (!typeNames.add(enumNode.name())) {
+                throw new SemanticException("Duplicate enum declaration: " + enumNode.name());
+            }
+
+            if (enumNode.values().isEmpty()) {
+                throw new SemanticException("Enum must contain at least one value: " + enumNode.name());
+            }
+
+            Set<String> enumValues = new HashSet<>();
+            for (String value : enumNode.values()) {
+                if (!enumValues.add(value)) {
+                    throw new SemanticException("Duplicate enum value in " + enumNode.name() + ": " + value);
+                }
+            }
+
+            registry.registerEnum(enumNode.name());
+        }
 
         for (EntityNode entity : program.entities()) {
-            if (!entityNames.add(entity.name())) {
+            if (!typeNames.add(entity.name())) {
                 throw new SemanticException("Duplicate entity declaration: " + entity.name());
             }
             registry.registerEntity(entity.name());

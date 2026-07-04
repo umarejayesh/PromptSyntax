@@ -18,6 +18,13 @@ public final class PromptIROptimizer {
                 ))
                 .toList();
 
+        List<IREnum> enums = new ArrayList<>(ir.enums());
+        enums.sort(Comparator.comparing(IREnum::name));
+
+        List<IREnum> normalizedEnums = enums.stream()
+                .map(e -> new IREnum(e.name(), unique(e.values())))
+                .toList();
+
         List<IRRelation> relations = new ArrayList<>(ir.relations());
         relations.sort(
                 Comparator.comparing(IRRelation::sourceEntity)
@@ -31,8 +38,8 @@ public final class PromptIROptimizer {
                 ir.target(),
                 ir.packageName(),
                 unique(ir.imports()),
+                normalizedEnums,
                 normalizedEntities,
-                unique(ir.enums()),
                 unique(ir.interfaces()),
                 List.copyOf(relations),
                 unique(ir.constraints()),

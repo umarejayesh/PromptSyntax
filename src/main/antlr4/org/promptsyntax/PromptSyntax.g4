@@ -1,7 +1,12 @@
 grammar PromptSyntax;
 
 program
-    : targetDecl packageDecl? importBlock? entityDecl+ constraintBlock? generateBlock verifyBlock? EOF
+    : targetDecl packageDecl? importBlock? topLevelDecl+ constraintBlock? generateBlock verifyBlock? EOF
+    ;
+
+topLevelDecl
+    : enumDecl
+    | entityDecl
     ;
 
 targetDecl : TARGET IDENTIFIER SEMI ;
@@ -9,6 +14,9 @@ packageDecl : PACKAGE qualifiedName SEMI ;
 importBlock : IMPORTS LBRACE importItem+ RBRACE ;
 importItem : qualifiedName STAR? SEMI ;
 qualifiedName : IDENTIFIER (DOT IDENTIFIER)* ;
+
+enumDecl : ENUM IDENTIFIER LBRACE enumItem+ RBRACE ;
+enumItem : IDENTIFIER SEMI ;
 
 entityDecl : ENTITY IDENTIFIER LBRACE fieldDecl+ RBRACE ;
 fieldDecl : IDENTIFIER COLON typeName SEMI ;
@@ -29,6 +37,7 @@ TARGET : 'target';
 PACKAGE : 'package';
 IMPORTS : 'imports';
 ENTITY : 'entity';
+ENUM : 'enum';
 CONSTRAINTS : 'constraints';
 GENERATE : 'generate';
 VERIFY : 'verify';

@@ -1,0 +1,31 @@
+target Java17;
+
+enum Semester {
+    SPRING;
+    SUMMER;
+    FALL;
+    WINTER;
+}
+
+entity Student {
+    id : int;
+    name : String;
+    semester : Semester;
+}
+
+constraints {
+    documented;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

@@ -1,6 +1,7 @@
 package org.promptsyntax.ir;
 
 import org.promptsyntax.ast.EntityNode;
+import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.ProgramNode;
 
@@ -17,6 +18,10 @@ public final class PromptIRGenerator {
                 .map(EntityNode::name)
                 .collect(Collectors.toSet());
 
+        List<IREnum> enums = program.enums().stream()
+                .map(e -> new IREnum(e.name(), List.copyOf(e.values())))
+                .toList();
+
         List<IREntity> entities = program.entities().stream()
                 .map(this::entityToIR)
                 .toList();
@@ -25,30 +30,31 @@ public final class PromptIRGenerator {
         for (EntityNode entity : program.entities()) {
             for (FieldNode field : entity.fields()) {
                 if (entityNames.contains(field.typeName())) {
-                    relations.add(new IRRelation(
-                            entity.name(),
-                            field.name(),
-                            field.typeName()
-                    ));
+                    relations.add(new IRRelation(entity.name(), field.name(), field.typeName()));
                 }
             }
         }
 
         return new PromptIR(
-                "2.1",
+                "2.2",
                 "PromptSyntax",
                 program.target(),
                 program.packageName(),
                 List.copyOf(program.imports()),
+                enums,
                 entities,
-                List.of(),
                 List.of(),
                 List.copyOf(relations),
                 List.copyOf(program.constraints()),
                 List.copyOf(program.generationDirectives()),
                 List.copyOf(program.verificationDirectives()),
                 Map.of(),
-                Map.of("version", "2.1", "ir", "PromptIR", "relations", String.valueOf(relations.size()))
+                Map.of(
+                        "version", "2.2",
+                        "ir", "PromptIR",
+                        "enums", String.valueOf(enums.size()),
+                        "relations", String.valueOf(relations.size())
+                )
         );
     }
 

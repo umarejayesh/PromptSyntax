@@ -5,6 +5,7 @@ import org.promptsyntax.ir.IRField;
 import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IRRelation;
+import org.promptsyntax.ir.IREnum;
 
 public final class GptBackend implements Backend {
 

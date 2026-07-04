@@ -1,6 +1,7 @@
 package org.promptsyntax.frontend;
 
 import org.promptsyntax.ast.EntityNode;
+import org.promptsyntax.ast.EnumNode;
 import org.promptsyntax.ast.FieldNode;
 import org.promptsyntax.ast.ProgramNode;
 import org.promptsyntax.PromptSyntaxBaseVisitor;
@@ -28,9 +29,15 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
+        List<EnumNode> enums = new ArrayList<>();
         List<EntityNode> entities = new ArrayList<>();
-        for (PromptSyntaxParser.EntityDeclContext ectx : ctx.entityDecl()) {
-            entities.add((EntityNode) visitEntityDecl(ectx));
+
+        for (PromptSyntaxParser.TopLevelDeclContext dctx : ctx.topLevelDecl()) {
+            if (dctx.enumDecl() != null) {
+                enums.add((EnumNode) visitEnumDecl(dctx.enumDecl()));
+            } else if (dctx.entityDecl() != null) {
+                entities.add((EntityNode) visitEntityDecl(dctx.entityDecl()));
+            }
         }
 
         List<String> constraints = new ArrayList<>();
@@ -52,7 +59,17 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
-        return new ProgramNode(target, packageName, imports, entities, constraints, generation, verification);
+        return new ProgramNode(target, packageName, imports, enums, entities, constraints, generation, verification);
+    }
+
+    @Override
+    public EnumNode visitEnumDecl(PromptSyntaxParser.EnumDeclContext ctx) {
+        String name = ctx.IDENTIFIER().getText();
+        List<String> values = new ArrayList<>();
+        for (PromptSyntaxParser.EnumItemContext item : ctx.enumItem()) {
+            values.add(item.IDENTIFIER().getText());
+        }
+        return new EnumNode(name, values);
     }
 
     @Override

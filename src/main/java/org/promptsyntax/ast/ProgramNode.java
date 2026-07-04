@@ -7,6 +7,7 @@ public record ProgramNode(
         String target,
         Optional<String> packageName,
         List<String> imports,
+        List<EnumNode> enums,
         List<EntityNode> entities,
         List<String> constraints,
         List<String> generationDirectives,
