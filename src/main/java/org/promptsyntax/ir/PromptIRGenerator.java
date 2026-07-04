@@ -15,14 +15,20 @@ public final class PromptIRGenerator {
                 .toList();
 
         return new PromptIR(
+                "2.0",
+                "PromptSyntax",
                 program.target(),
                 program.packageName(),
                 List.copyOf(program.imports()),
                 entities,
+                List.of(),
+                List.of(),
+                List.of(),
                 List.copyOf(program.constraints()),
                 List.copyOf(program.generationDirectives()),
                 List.copyOf(program.verificationDirectives()),
-                Map.of("version", "1.1", "ir", "PromptIR")
+                Map.of(),
+                Map.of("version", "2.0", "ir", "PromptIR")
         );
     }
 

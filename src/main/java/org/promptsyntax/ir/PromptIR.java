@@ -5,12 +5,18 @@ import java.util.Map;
 import java.util.Optional;
 
 public record PromptIR(
+        String irVersion,
+        String sourceLanguage,
         String target,
         Optional<String> packageName,
         List<String> imports,
         List<IREntity> entities,
+        List<String> enums,
+        List<String> interfaces,
+        List<String> relations,
         List<String> constraints,
         List<String> generate,
         List<String> verify,
+        Map<String, String> backendHints,
         Map<String, String> metadata
 ) {}

@@ -19,13 +19,19 @@ public final class PromptIROptimizer {
                 .toList();
 
         return new PromptIR(
+                ir.irVersion(),
+                ir.sourceLanguage(),
                 ir.target(),
                 ir.packageName(),
                 unique(ir.imports()),
                 normalizedEntities,
+                unique(ir.enums()),
+                unique(ir.interfaces()),
+                unique(ir.relations()),
                 unique(ir.constraints()),
                 unique(ir.generate()),
                 unique(ir.verify()),
+                ir.backendHints(),
                 ir.metadata()
         );
     }
