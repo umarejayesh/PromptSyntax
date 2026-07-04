@@ -72,14 +72,32 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
         return new EnumNode(name, values);
     }
 
+
+
     @Override
     public EntityNode visitEntityDecl(PromptSyntaxParser.EntityDeclContext ctx) {
+
         String name = ctx.IDENTIFIER().getText();
+
+        List<String> interfaces = new ArrayList<>();
+
+        if (ctx.implementsClause() != null) {
+            for (var id : ctx.implementsClause().IDENTIFIER()) {
+                interfaces.add(id.getText());
+            }
+        }
+
         List<FieldNode> fields = new ArrayList<>();
+
         for (PromptSyntaxParser.FieldDeclContext fctx : ctx.fieldDecl()) {
             fields.add((FieldNode) visitFieldDecl(fctx));
         }
-        return new EntityNode(name, fields);
+
+        return new EntityNode(
+                name,
+                interfaces,
+                fields
+        );
     }
 
     @Override

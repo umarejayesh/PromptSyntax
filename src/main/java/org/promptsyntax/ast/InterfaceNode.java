@@ -2,8 +2,7 @@ package org.promptsyntax.ast;
 
 import java.util.List;
 
-public record EntityNode(
+public record InterfaceNode(
         String name,
-        List<String> interfaces,
         List<FieldNode> fields
 ) {}

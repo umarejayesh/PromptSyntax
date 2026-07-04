@@ -59,7 +59,13 @@ public final class PromptIRGenerator {
     }
 
     private IREntity entityToIR(EntityNode entity) {
-        return new IREntity(entity.name(), entity.fields().stream().map(this::fieldToIR).toList());
+        return new IREntity(
+                entity.name(),
+                List.copyOf(entity.interfaces()),
+                entity.fields().stream()
+                        .map(this::fieldToIR)
+                        .toList()
+        );
     }
 
     private IRField fieldToIR(FieldNode field) {

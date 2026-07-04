@@ -6,6 +6,7 @@ program
 
 topLevelDecl
     : enumDecl
+    | interfaceDecl
     | entityDecl
     ;
 
@@ -18,7 +19,11 @@ qualifiedName : IDENTIFIER (DOT IDENTIFIER)* ;
 enumDecl : ENUM IDENTIFIER LBRACE enumItem+ RBRACE ;
 enumItem : IDENTIFIER SEMI ;
 
-entityDecl : ENTITY IDENTIFIER LBRACE fieldDecl+ RBRACE ;
+interfaceDecl : INTERFACE IDENTIFIER LBRACE fieldDecl+ RBRACE ;
+
+entityDecl : ENTITY IDENTIFIER implementsClause? LBRACE fieldDecl+ RBRACE ;
+implementsClause : IMPLEMENTS IDENTIFIER (COMMA IDENTIFIER)* ;
+
 fieldDecl : IDENTIFIER COLON typeName SEMI ;
 typeName : IDENTIFIER ;
 
@@ -38,6 +43,8 @@ PACKAGE : 'package';
 IMPORTS : 'imports';
 ENTITY : 'entity';
 ENUM : 'enum';
+INTERFACE : 'interface';
+IMPLEMENTS : 'implements';
 CONSTRAINTS : 'constraints';
 GENERATE : 'generate';
 VERIFY : 'verify';
@@ -63,6 +70,7 @@ COMPILE : 'compile';
 RUN_TESTS : 'run_tests';
 LINT : 'lint';
 
+COMMA : ',';
 STAR : '*';
 DOT : '.';
 LBRACE : '{';

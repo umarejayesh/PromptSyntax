@@ -12,10 +12,15 @@ public final class PromptIROptimizer {
         entities.sort(Comparator.comparing(IREntity::name));
 
         List<IREntity> normalizedEntities = entities.stream()
-                .map(e -> new IREntity(
+                                .map(e -> new IREntity(
                         e.name(),
-                        e.fields().stream().sorted(Comparator.comparing(IRField::name)).toList()
-                ))
+                        List.copyOf(e.interfaces()),
+                        e.fields()
+                        .stream()
+                        .sorted(Comparator.comparing(IRField::name))
+                        .toList()
+                )
+        )
                 .toList();
 
         List<IREnum> enums = new ArrayList<>(ir.enums());
