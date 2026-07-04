@@ -1,0 +1,9 @@
+target Java17;
+
+entity Student {
+    courses : List<UnknownCourse>;
+}
+
+generate {
+    class;
+}

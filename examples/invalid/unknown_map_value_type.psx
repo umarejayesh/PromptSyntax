@@ -1,0 +1,9 @@
+target Java17;
+
+entity Student {
+    metadata : Map<String,UnknownType>;
+}
+
+generate {
+    class;
+}
