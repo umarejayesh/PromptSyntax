@@ -2,7 +2,9 @@ package org.promptsyntax.backend;
 
 import org.promptsyntax.ir.IREntity;
 import org.promptsyntax.ir.IRField;
+import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.PromptIR;
+import org.promptsyntax.ir.IRRelation;
 
 public final class GptBackend implements Backend {
 
@@ -31,6 +33,20 @@ public final class GptBackend implements Backend {
             sb.append("Fields:\n");
             for (IRField field : entity.fields()) {
                 sb.append("- ").append(field.type()).append(" ").append(field.name()).append("\n");
+            }
+            sb.append("\n");
+        }
+
+        if (!ir.relations().isEmpty()) {
+            sb.append("Relationships:\n");
+            for (IRRelation r : ir.relations()) {
+                sb.append("- ")
+                        .append(r.sourceEntity())
+                        .append(".")
+                        .append(r.fieldName())
+                        .append(" -> ")
+                        .append(r.targetEntity())
+                        .append("\n");
             }
             sb.append("\n");
         }

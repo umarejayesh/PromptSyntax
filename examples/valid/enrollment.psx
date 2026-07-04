@@ -1,0 +1,34 @@
+target Java17;
+
+entity Student {
+    id : int;
+    name : String;
+}
+
+entity Course {
+    code : String;
+    title : String;
+}
+
+entity Enrollment {
+    student : Student;
+    course : Course;
+    semester : String;
+}
+
+constraints {
+    documented;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

@@ -18,6 +18,13 @@ public final class PromptIROptimizer {
                 ))
                 .toList();
 
+        List<IRRelation> relations = new ArrayList<>(ir.relations());
+        relations.sort(
+                Comparator.comparing(IRRelation::sourceEntity)
+                        .thenComparing(IRRelation::fieldName)
+                        .thenComparing(IRRelation::targetEntity)
+        );
+
         return new PromptIR(
                 ir.irVersion(),
                 ir.sourceLanguage(),
@@ -27,7 +34,7 @@ public final class PromptIROptimizer {
                 normalizedEntities,
                 unique(ir.enums()),
                 unique(ir.interfaces()),
-                unique(ir.relations()),
+                List.copyOf(relations),
                 unique(ir.constraints()),
                 unique(ir.generate()),
                 unique(ir.verify()),

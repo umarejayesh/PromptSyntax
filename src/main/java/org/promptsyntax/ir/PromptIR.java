@@ -13,7 +13,7 @@ public record PromptIR(
         List<IREntity> entities,
         List<String> enums,
         List<String> interfaces,
-        List<String> relations,
+        List<IRRelation> relations,
         List<String> constraints,
         List<String> generate,
         List<String> verify,
