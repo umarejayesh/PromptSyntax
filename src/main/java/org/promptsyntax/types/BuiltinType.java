@@ -11,7 +11,11 @@ public enum BuiltinType implements Type {
     STRING("String"),
     DATE("Date"),
     UUID("UUID"),
+    LIST("List"),
+    SET("Set"),
+    MAP("Map"),
     DECIMAL("Decimal");
+    
 
     private final String text;
 

@@ -1,0 +1,30 @@
+target Java17;
+
+entity Course {
+    code : String;
+    tags : List<String>;
+}
+
+entity Student {
+    id : int;
+    name : String;
+    courses : List<Course>;
+    metadata : Map<String,String>;
+}
+
+constraints {
+    documented;
+    clean_code;
+}
+
+generate {
+    class;
+    constructor;
+    getters;
+    tests;
+}
+
+verify {
+    compile;
+    run_tests;
+}

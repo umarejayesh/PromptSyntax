@@ -102,6 +102,9 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
     @Override
     public FieldNode visitFieldDecl(PromptSyntaxParser.FieldDeclContext ctx) {
-        return new FieldNode(ctx.IDENTIFIER().getText(), ctx.typeName().IDENTIFIER().getText());
+        return new FieldNode(
+                ctx.IDENTIFIER().getText(),
+                ctx.typeName().getText()
+        );
     }
 }

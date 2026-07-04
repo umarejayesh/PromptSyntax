@@ -25,7 +25,12 @@ entityDecl : ENTITY IDENTIFIER implementsClause? LBRACE fieldDecl+ RBRACE ;
 implementsClause : IMPLEMENTS IDENTIFIER (COMMA IDENTIFIER)* ;
 
 fieldDecl : IDENTIFIER COLON typeName SEMI ;
-typeName : IDENTIFIER ;
+
+typeName
+    : IDENTIFIER
+    | IDENTIFIER LT typeName GT
+    | IDENTIFIER LT typeName COMMA typeName GT
+    ;
 
 constraintBlock : CONSTRAINTS LBRACE constraintItem+ RBRACE ;
 constraintItem : (IMMUTABLE | DOCUMENTED | SERIALIZABLE | CLEAN_CODE | LOW_COMPLEXITY) SEMI ;
@@ -71,6 +76,8 @@ RUN_TESTS : 'run_tests';
 LINT : 'lint';
 
 COMMA : ',';
+LT : '<';
+GT : '>';
 STAR : '*';
 DOT : '.';
 LBRACE : '{';

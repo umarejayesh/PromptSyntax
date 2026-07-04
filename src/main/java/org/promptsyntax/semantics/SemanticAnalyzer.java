@@ -77,8 +77,8 @@ public final class SemanticAnalyzer {
                     );
                 }
 
-                Type resolvedType = registry.resolve(field.typeName());
-                if (resolvedType == null) {
+		Type resolvedType = resolveType(field.typeName(), registry);
+		if (resolvedType == null) {
                     throw new SemanticException(
                             "Unknown type '" + field.typeName() + "' for field "
                                     + entity.name() + "." + field.name()
@@ -124,5 +124,35 @@ public final class SemanticAnalyzer {
         if (cons.contains("immutable") && gen.contains("setters")) {
             throw new SemanticException("Constraint immutable conflicts with setters.");
         }
+    }
+    private Type resolveType(String typeName, TypeRegistry registry) {
+        if (registry.resolve(typeName) != null) {
+            return registry.resolve(typeName);
+        }
+
+        if (typeName.startsWith("List<") && typeName.endsWith(">")) {
+            String inner = typeName.substring(5, typeName.length() - 1);
+            return resolveType(inner, registry) == null ? null : registry.resolve("List");
+        }
+
+        if (typeName.startsWith("Set<") && typeName.endsWith(">")) {
+            String inner = typeName.substring(4, typeName.length() - 1);
+            return resolveType(inner, registry) == null ? null : registry.resolve("Set");
+        }
+
+        if (typeName.startsWith("Map<") && typeName.endsWith(">")) {
+            String inner = typeName.substring(4, typeName.length() - 1);
+            int comma = inner.indexOf(',');
+            if (comma < 0) return null;
+
+            String keyType = inner.substring(0, comma);
+            String valueType = inner.substring(comma + 1);
+
+            return resolveType(keyType, registry) != null && resolveType(valueType, registry) != null
+                    ? registry.resolve("Map")
+                    : null;
+        }
+
+        return null;
     }
 }
