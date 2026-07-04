@@ -26,9 +26,10 @@ public class QwenBackend implements Backend {
             sb.append("\n");
         }
 
-        appendList(sb, "Constraints to satisfy", ir.constraints());
         appendList(sb, "Implementation requirements", ir.verify());
-        appendList(sb, "Verification goals", ir.verify());
+	appendList(sb, "Constraints to satisfy", ir.constraints());
+	appendList(sb, "Implementation requirements", ir.generate());
+	appendList(sb, "Verification goals", ir.verify());
 
         return sb.toString();
     }
