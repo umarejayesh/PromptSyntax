@@ -14,6 +14,7 @@ public final class PromptIROptimizer {
         List<IREntity> normalizedEntities = entities.stream()
         .map(e -> new IREntity(
                 e.name(),
+                e.parent(),
                 e.interfaces(),
                 e.fields().stream()
                         .sorted(Comparator.comparing(IRField::name))

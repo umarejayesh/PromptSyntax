@@ -79,6 +79,11 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
     @Override
     public EntityNode visitEntityDecl(PromptSyntaxParser.EntityDeclContext ctx) {
         String name = ctx.IDENTIFIER().getText();
+        Optional<String> parent = Optional.empty();
+
+        if (ctx.extendsClause() != null) {
+            parent = Optional.of(ctx.extendsClause().IDENTIFIER().getText());
+        }
 
         List<String> interfaces = new ArrayList<>();
 
@@ -99,7 +104,7 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
-        return new EntityNode(name, interfaces, fields, methods);
+        return new EntityNode(name, parent, interfaces, fields, methods);
     }
 
     @Override

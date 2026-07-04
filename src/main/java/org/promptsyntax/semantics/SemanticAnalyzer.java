@@ -63,6 +63,32 @@ public final class SemanticAnalyzer {
             registry.registerEntity(entity.name());
         }
 
+        Set<String> entityNames = new HashSet<>();
+
+        for (EntityNode entity : program.entities()) {
+            entityNames.add(entity.name());
+        }
+
+        for (EntityNode entity : program.entities()) {
+            if (entity.parent().isPresent()) {
+                String parent = entity.parent().get();
+
+                if (!entityNames.contains(parent)) {
+                    throw new SemanticException(
+                            "Unknown parent entity for " + entity.name() + ": " + parent
+                    );
+                }
+
+                if (entity.name().equals(parent)) {
+                    throw new SemanticException(
+                            "Entity cannot extend itself: " + entity.name()
+                    );
+                }
+            }
+        }
+
+        
+
         for (EntityNode entity : program.entities()) {
             if (entity.fields().isEmpty()) {
                 throw new SemanticException("Entity must contain at least one field: " + entity.name());

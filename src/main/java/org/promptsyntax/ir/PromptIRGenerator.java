@@ -65,6 +65,7 @@ public final class PromptIRGenerator {
     private IREntity entityToIR(EntityNode entity) {
         return new IREntity(
                 entity.name(),
+                entity.parent(),
                 List.copyOf(entity.interfaces()),
                 entity.fields().stream()
                         .map(this::fieldToIR)

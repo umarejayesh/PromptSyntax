@@ -21,7 +21,9 @@ enumItem : IDENTIFIER SEMI ;
 
 interfaceDecl : INTERFACE IDENTIFIER LBRACE fieldDecl+ RBRACE ;
 
-entityDecl : ENTITY IDENTIFIER implementsClause? LBRACE entityMember+ RBRACE ;
+entityDecl : ENTITY IDENTIFIER extendsClause? implementsClause? LBRACE entityMember+ RBRACE ;
+
+extendsClause : EXTENDS IDENTIFIER ;
 
 entityMember
     : fieldDecl
@@ -71,6 +73,7 @@ CONSTRAINTS : 'constraints';
 GENERATE : 'generate';
 VERIFY : 'verify';
 
+
 IMMUTABLE : 'immutable';
 DOCUMENTED : 'documented';
 SERIALIZABLE : 'serializable';
@@ -92,6 +95,7 @@ COMPILE : 'compile';
 RUN_TESTS : 'run_tests';
 LINT : 'lint';
 METHOD : 'method';
+EXTENDS : 'extends';
 
 
 COMMA : ',';
