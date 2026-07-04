@@ -47,6 +47,7 @@ public final class PromptIRGenerator {
                 "2.3",
                 "PromptSyntax",
                 program.target(),
+                program.moduleName(),
                 program.packageName(),
                 List.copyOf(program.imports()),
                 enums,

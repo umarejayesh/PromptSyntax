@@ -19,8 +19,13 @@ public class QwenBackend implements Backend {
     public String lower(PromptIR ir) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Generate ").append(ir.target()).append(" code.\n");
-        sb.append("Strictly return code only.\n\n");
+
+        sb.append("Write clear, production-quality ").append(ir.target()).append(" code.\n");
+        sb.append("Return only source code. Do not include explanation.\n\n");
+
+        ir.moduleName().ifPresent(module ->
+                sb.append("Module: ").append(module).append("\n\n")
+        );
         appendEnums(sb, ir);
         appendInterfaces(sb, ir);
         

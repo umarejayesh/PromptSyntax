@@ -1,8 +1,10 @@
 grammar PromptSyntax;
 
 program
-    : targetDecl packageDecl? importBlock? topLevelDecl+ constraintBlock? generateBlock verifyBlock? EOF
+    : moduleDecl? targetDecl packageDecl? importBlock? topLevelDecl+ constraintBlock? generateBlock verifyBlock? EOF
     ;
+
+moduleDecl : MODULE qualifiedName SEMI ;
 
 topLevelDecl
     : enumDecl
@@ -111,6 +113,7 @@ METHOD : 'method';
 EXTENDS : 'extends';
 REQUIRES : 'requires';
 ENSURES  : 'ensures';
+MODULE : 'module';
 
 
 

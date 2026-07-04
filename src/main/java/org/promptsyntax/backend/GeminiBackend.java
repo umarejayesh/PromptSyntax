@@ -20,8 +20,13 @@ public class GeminiBackend implements Backend {
     public String lower(PromptIR ir) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Task: Generate ").append(ir.target()).append(" source code.\n");
-        sb.append("Output format: source code only.\n\n");
+        sb.append("Write clear, production-quality ").append(ir.target()).append(" code.\n");
+        sb.append("Return only source code. Do not include explanation.\n\n");
+
+        ir.moduleName().ifPresent(module ->
+                sb.append("Module: ").append(module).append("\n\n")
+        );
+
         appendEnums(sb, ir);
         appendInterfaces(sb, ir);
         for (IREntity entity : ir.entities()) {

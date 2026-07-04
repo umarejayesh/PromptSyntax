@@ -43,6 +43,7 @@ public final class PromptIROptimizer {
                 ir.irVersion(),
                 ir.sourceLanguage(),
                 ir.target(),
+                ir.moduleName(),
                 ir.packageName(),
                 unique(ir.imports()),
                 normalizedEnums,

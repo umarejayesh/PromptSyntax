@@ -26,6 +26,11 @@ public final class GptBackend implements Backend {
 
         ir.packageName().ifPresent(pkg -> sb.append("Use package: ").append(pkg).append("\n\n"));
 
+        ir.moduleName().ifPresent(module ->
+                sb.append("Module: ").append(module).append("\n\n")
+        );
+
+
         if (!ir.imports().isEmpty()) {
             sb.append("Imports:\n");
             for (String imp : ir.imports()) sb.append("- ").append(imp).append("\n");

@@ -19,6 +19,11 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
 
     @Override
     public ProgramNode visitProgram(PromptSyntaxParser.ProgramContext ctx) {
+        Optional<String> moduleName = Optional.empty();
+
+        if (ctx.moduleDecl() != null) {
+            moduleName = Optional.of(ctx.moduleDecl().qualifiedName().getText());
+        }
         String target = ctx.targetDecl().IDENTIFIER().getText();
         
 
@@ -65,7 +70,18 @@ public final class AstBuilder extends PromptSyntaxBaseVisitor<Object> {
             }
         }
 
-        return new ProgramNode(target, packageName, imports, enums, interfaces, entities, constraints, generation, verification);
+        return new ProgramNode(
+            moduleName,
+            target,
+            packageName,
+            imports,
+            enums,
+            interfaces,
+            entities,
+            constraints,
+            generation,
+            verification
+    );
     }
 
     @Override

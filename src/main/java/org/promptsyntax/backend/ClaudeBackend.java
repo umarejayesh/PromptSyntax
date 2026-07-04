@@ -8,7 +8,6 @@ import org.promptsyntax.ir.PromptIR;
 import org.promptsyntax.ir.IRRelation;
 import org.promptsyntax.ir.IREnum;
 import org.promptsyntax.ir.IRInterface;
-import org.promptsyntax.ir.IRContract;
 
 
 public class ClaudeBackend implements Backend {
@@ -21,9 +20,13 @@ public class ClaudeBackend implements Backend {
     public String lower(PromptIR ir) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("You are an expert software engineer.\n\n");
         sb.append("Write clear, production-quality ").append(ir.target()).append(" code.\n");
         sb.append("Return only source code. Do not include explanation.\n\n");
+
+        ir.moduleName().ifPresent(module ->
+                sb.append("Module: ").append(module).append("\n\n")
+        );
+
         appendEnums(sb, ir);
         appendInterfaces(sb, ir);
         for (IREntity entity : ir.entities()) {
@@ -97,6 +100,8 @@ public class ClaudeBackend implements Backend {
         }
         sb.append("\n");
     }
+
+    
     private void appendEnums(StringBuilder sb, PromptIR ir) {
         if (ir.enums().isEmpty()) return;
 

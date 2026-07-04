@@ -1,0 +1,12 @@
+module university.academics;
+
+target Java17;
+
+entity Student {
+    id : int;
+    name : String;
+}
+
+generate {
+    class;
+}

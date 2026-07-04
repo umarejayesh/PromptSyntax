@@ -8,6 +8,7 @@ public record PromptIR(
         String irVersion,
         String sourceLanguage,
         String target,
+        Optional<String> moduleName,
         Optional<String> packageName,
         List<String> imports,
         List<IREnum> enums,

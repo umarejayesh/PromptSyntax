@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public record ProgramNode(
+        Optional<String> moduleName,
         String target,
         Optional<String> packageName,
         List<String> imports,
